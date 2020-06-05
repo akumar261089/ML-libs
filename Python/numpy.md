@@ -16,7 +16,7 @@ Memory-efficient container that provides fast numerical operations.
 
 ##### Data types
 #####Structured Array
-
+##### NumPy Array Attributes
 ##### How to move data back and forth from list to numpy
 
 
@@ -25,22 +25,23 @@ Memory-efficient container that provides fast numerical operations.
 
 ##### Numpy aray to matrix
 
-##### Numpy array indeing and slicing
-
+##### Numpy array indeing 
+##### Accessing and slicing
+##### Array Concatenation and Splitting
 ##### conditional and fancy indexing
 numpy.where()
 
 ##### Element wise  operation
 
-Basic Reductions
+##### Basic Reductions
 
-Broadcasting
+##### Broadcasting
 
-Sorting 
-More elaborate arrays
+##### Sorting 
+##### More elaborate arrays
 
-maskedarray
-
+##### maskedarray
+##### Aggregations
 
 ##### delete numpy index
 
@@ -50,6 +51,7 @@ maskedarray
 ##### Numpy read write text and binary
 
 ##### Math functions
+##### NumPy’s UFuncs
 	Why we need numpy array as we already have Python list and dict - operating on the elements in a list can only be done through iterative loops, which is computationally inefficient in Python.
 	example 
 	```
