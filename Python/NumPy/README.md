@@ -690,7 +690,7 @@ array([4, 3, 1, 2])
 ```
 
 
-##### Numpy read write text and binary
+## Numpy read write text and binary
 
 ```
 >>> x = y = z = np.arange(0.0,5.0,1.0)
@@ -734,7 +734,7 @@ array([[0., 0., 0., ..., 0., 0., 0.],
        [0., 0., 0., ..., 0., 0., 0.],
        [0., 0., 0., ..., 0., 0., 0.]])
 ```
-##### Math functions
+## Math functions
 ```
 >>> A = np.matrix([[3, 6, -5], [1, -3, 2],
 ... [5, -1, 4]])
@@ -770,7 +770,7 @@ array([12, -2, 10])
 array([1.75, 1.75, 0.75])
 ```
 
-##### NumPy’s UFuncs
+## NumPy’s UFuncs
 
 	
 NumPy provides a convenient interface into just this kind of statically typed, compiled routine. This is known as a vectorized operation.
@@ -786,6 +786,6 @@ Operator|Equivalent ufunc|Description
 ** | np.power | Exponentiation (e.g., 2 ** 3 = 8) 
 % |np.mod | Modulus/remainder (e.g., 9 % 4 = 1) 
 np.abs |np.absolute|
- 
+
 
 
