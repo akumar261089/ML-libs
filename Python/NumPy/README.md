@@ -94,7 +94,7 @@ You can specify the bit depth when creating arrays by setting the data type para
 ## NumPy Array Attributes
 
 ``` 
->>> x = np.random.randint(10, size=(3, 4, 5)) 
+>>>   
 >>> x
 array([[[8, 7, 2, 7, 6],
         [1, 4, 2, 3, 5],
@@ -117,6 +117,8 @@ ndarray.ndim | Dimentions of an array|  `x.ndim`|`3`
 ndarray.shape | Shape of an array(can be used to reshape) |  `x.shape` |`(3, 4, 5)`
 ndarry.size | Number of elements in array| `x.size`|`60`
 numpy.dtype |Data type|  `x.dtype` | `dtype('int64')`
+numpy.astype(int)| Change data type |` x.astype(float)` | `array([[[9., 4., 5., 8., 2.],...]`
+np.around(a) | remove decimal part | `np.around(np.array([1.2, 1.5]))` | `array([1., 2.])`
 numpy.flags | Show flags | `x.flags` | `C_CONTIGUOUS : True`
   |||`F_CONTIGUOUS : False`
   |||`OWNDATA : True`
@@ -279,6 +281,7 @@ Or
 >>> new_arr
 array([3, 4])
 ```
+## Delete numpy index
 Deleting sub array
 ``` 
 >>> arr = np.arange(5)
@@ -429,7 +432,107 @@ array([[0., 0., 0.],
 ```
 > The transposition is a view not for matrix 
 
-## Basic Reductions
+
+```>>> img1 = np.zeros((5, 5)) + 3
+>>> img1
+array([[3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.]])
+>>> img1[4:-4, 4:-4] = 6
+>>> img1
+array([[3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.]])
+>>> img1 = np.zeros((5, 5)) + 3
+>>> img1
+array([[3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.],
+       [3., 3., 3., 3., 3.]])
+>>> img1[1:-1, 1:-1] = 6
+>>> img1
+array([[3., 3., 3., 3., 3.],
+       [3., 6., 6., 6., 3.],
+       [3., 6., 6., 6., 3.],
+       [3., 6., 6., 6., 3.],
+       [3., 3., 3., 3., 3.]])
+>>> img1[2:-2, 2:-2] = 9
+>>> img1
+array([[3., 3., 3., 3., 3.],
+       [3., 6., 6., 6., 3.],
+       [3., 6., 9., 6., 3.],
+       [3., 6., 6., 6., 3.],
+       [3., 3., 3., 3., 3.]])
+```
+```
+>>> index1 = img1 > 2
+>>> index1
+array([[ True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True],
+       [ True,  True,  True,  True,  True]])
+>>> index2 = img1 < 6
+>>> index2
+array([[ True,  True,  True,  True,  True],
+       [ True, False, False, False,  True],
+       [ True, False, False, False,  True],
+       [ True, False, False, False,  True],
+       [ True,  True,  True,  True,  True]])
+>>> compound_index = index1 & index2
+>>> compound_index
+array([[ True,  True,  True,  True,  True],
+       [ True, False, False, False,  True],
+       [ True, False, False, False,  True],
+       [ True, False, False, False,  True],
+       [ True,  True,  True,  True,  True]])
+>>> compound_index = (img1 > 3) & (img1 < 7)
+>>> compound_index
+array([[False, False, False, False, False],
+       [False,  True,  True,  True, False],
+       [False,  True, False,  True, False],
+       [False,  True,  True,  True, False],
+       [False, False, False, False, False]])
+>>> img2 = np.copy(img1)
+>>> img2[compound_index] = 0
+>>> img2
+array([[3., 3., 3., 3., 3.],
+       [3., 0., 0., 0., 3.],
+       [3., 0., 9., 0., 3.],
+       [3., 0., 0., 0., 3.],
+       [3., 3., 3., 3., 3.]])
+```
+```
+>>> index3 = img1 == 9
+>>> index3
+array([[False, False, False, False, False],
+       [False, False, False, False, False],
+       [False, False,  True, False, False],
+       [False, False, False, False, False],
+       [False, False, False, False, False]])
+>>> index4 = (index1 & index2) | index3
+>>> index4
+array([[ True,  True,  True,  True,  True],
+       [ True, False, False, False,  True],
+       [ True, False,  True, False,  True],
+       [ True, False, False, False,  True],
+       [ True,  True,  True,  True,  True]])
+>>> img3 = np.copy(img1)
+>>> img3[index4] = 0
+>>> img3
+array([[0., 0., 0., 0., 0.],
+       [0., 6., 6., 6., 0.],
+       [0., 6., 0., 6., 0.],
+       [0., 6., 6., 6., 0.],
+       [0., 0., 0., 0., 0.]])
+```
+
+## Basic Reductions or Aggregations
 
 ```
 >>> x = np.array([1, 2, 3, 4])
@@ -553,14 +656,38 @@ array([[ 0, 10, 20, 30],
 
 ## Sorting 
 
-##### More elaborate arrays
+```
+>>> a = np.array([[4, 3, 5], [1, 2, 1]])
+>>> a
+array([[4, 3, 5],
+       [1, 2, 1]])
+>>> np.sort(a, axis=0)
+array([[1, 2, 1],
+       [4, 3, 5]])
+>>> np.sort(a, axis=1)
+array([[3, 4, 5],
+       [1, 1, 2]])
+```
+With Fancy indexing
+```
+>>> a = np.array([4, 3, 1, 2])
+>>> a
+array([4, 3, 1, 2])
+>>> j = np.argsort(a)
+>>> j
+array([2, 3, 1, 0])
+>>> a[j]
+array([1, 2, 3, 4])
+```
 
-##### maskedarray
-##### Aggregations
-
-##### delete numpy index
-
-##### boolean statement with numpy arrays
+```
+>>> a
+array([4, 3, 1, 2])
+>>> j_max = np.argmax(a)
+>>> j_min = np.argmin(a)
+>>> j_max, j_min
+(0, 2)
+```
 
 
 ##### Numpy read write text and binary
