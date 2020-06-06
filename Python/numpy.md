@@ -1,18 +1,43 @@
 # <p align=center>NumPy</p>
+> This Page is under construction.
+
+## Introduction 
 
 
-### Introduction 
-> In this section is under construction.
+In this document I will cover basic NumPy functionalities which you can practice.
 
-##### What is NumPy
+#### What is NumPy
 
-NumPy specializes in numerical processing through multi-dimensional ndarrays, where the arrays allow element-by-element operations(broadcasting), linear algebra formalism can be used without modifying the NumPy arrays before- hand. the arrays can be modified in size dynamically
+NumPy specializes in numerical processing through multi-dimensional nDarrays, where the arrays allow element-by-element operations(broadcasting), linear algebra formalism.
 
-##### Benifits of numpy array
-Memory-efficient container that provides fast numerical operations.
+#### Benifits of NumPy array
+Memory-efficient(as you can reshape data in different dimentions of array without creating multiple copies) container that provides fast numerical operations. 
 
-##### How to create numpy array
+#### Installing NumPy
+apt | yum | pip
+----|--------|--------------
+`sudo apt-get install python-numpy`  | ` sudo yum install numpy ` |  `pip install numpy`
 
+#### How to create NumPy Array
+Import NumPy in your python code: ` import numpy as np `
+
+1D | Empty | Zeros | Sequential numbers | Specific steps between range | List
+---|------|------|--------------------|---------------------------------|-------
+Examples   |`np.empty(2)` | `np.zeros(3)` | `np.arange(3)` | `np.linspace(0, 1, 5)` | `np.array([3,2,1])`
+Output | `array([1., 1.])`|`array([0., 0., 0.])` | `array([0, 1, 2])` | `array([0.  , 0.25, 0.5 , 0.75, 1.  ])` | `array([3, 2, 1])`
+Examples |      |         | `np.arange(2,5)` | `np.logspace(0, 1, 5, base=10.0)`|
+Output |     |       |`array([2, 3, 4])` | `array([ 1.        ,  1.77827941,  3.16227766,  5.62341325, 10.        ])`|
+
+
+
+2D | Random | normal(with range) | random int | identity matrix
+----------|------|--------------------|---------------------------------|-------
+Examples   | `np.random.random((3, 3))` | `np.random.normal(0, 1, (2, 2))` | `np.random.randint(0, 10, (2, 2))` | `np.eye(2)`
+Output | `array([[0.1978, 0.6596], [0.7029, 0.5751]])` | `array([[-0.0952,  0.0182], [-0.4957,  0.0688]])` | `array([[1, 9],  [6, 4]])` | `array([[1., 0.],[0., 1.]])`
+
+You can specify the bit depth when creating arrays by setting the data type parameter (dtype) to int, numpy.float16, numpy.float32, or numpy.float64. 
+`np.zeros(3, dtype=int)` and thios will give you `array([0, 0, 0])`
+>All  methods can be used to create 1D, 2D or nD arrays by giving dimentions in (n,m) example - `np.zeros((3,3))`
 
 ##### Data types
 #####Structured Array
