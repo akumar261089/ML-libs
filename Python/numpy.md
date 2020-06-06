@@ -21,7 +21,7 @@ apt | yum | pip
 
 #### Data types for np arrays
 
-The ndarray is similar to lists, but rather than being highly flexible by storing different types of objects in one list, only the same type of element can be stored in each column all elements must be floats, integers, or strings, it can also have elements like a list and in that case we will call it a Structured array
+The ndarray is similar to lists, but rather than being highly flexible by storing different types of objects in one list, only the same type of element can be stored in each column all elements must be floats, integers, or strings, it can also have elements like a list and in that case we will call it a Structured array(#structured-array)
 
 NumPy arrays contain values of a single type, so it is important to have detailed knowledge of those types and their limitations.
 
@@ -51,6 +51,8 @@ complex64	| Complex number, represented by two 32-bit floats | c8
 complex128	| Complex number, represented by two 64-bit floats | c16
 
 #### Structured Array
+
+
 
 #### How to create NumPy Array
 
