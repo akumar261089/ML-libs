@@ -7,7 +7,7 @@
 
 NumPy specializes in numerical processing through multi-dimensional nDarrays, where the arrays allow element-by-element operations(broadcasting), linear algebra formalism.
 
-## Benifits of NumPy array
+## Benefits of NumPy array
 Memory-efficient(as you can reshape data in different dimentions of array without creating multiple copies) container that provides fast numerical operations. 
 Operating on the elements in a list can only be done through iterative loops, which is computationally inefficient in Python.
 
@@ -113,7 +113,7 @@ array([[[8, 7, 2, 7, 6],
 ```
 Types| Description | examples| Output
 -----|---------|---------|--------
-ndarray.ndim | Dimentions of an array|  `x.ndim`|`3`
+ndarray.ndim | Dimensions of an array|  `x.ndim`|`3`
 ndarray.shape | Shape of an array(can be used to reshape) |  `x.shape` |`(3, 4, 5)`
 ndarry.size | Number of elements in array| `x.size`|`60`
 numpy.dtype |Data type|  `x.dtype` | `dtype('int64')`
@@ -151,7 +151,7 @@ array([[1, 2],
        [3, 4],
        [5, 6]], dtype=int8)
 ```
-We can also use ravel to flattern the array
+We can also use ravel to flatten the array
 ```
 >>> a = np.array([[1, 2, 3], [4, 5, 6]])
 >>> a.ravel()
@@ -222,9 +222,9 @@ array([[[ 0,  1],
 array([0, 1, 2, 3, 0, 0, 0, 0])
 ```
 
-## Numpy aray to matrix
+## Numpy array to matrix
 we need linear algebra operations,  we can convert nd array to matrix 
->ndarray objects, matrix objects can and only will be two dimensional.
+>nDarray objects, matrix objects can and only will be two dimensional.
 
 ```
 >>>import numpy as np
@@ -242,7 +242,7 @@ matrix([[0., 0., 0.],
  	   [0., 0., 0.]])
 ```
 
-## Numpy array indeing and slicing
+## Numpy array indexing and slicing
 Numpy indexing works similar to Python lists
 
 ``` 
@@ -786,6 +786,3 @@ Operator|Equivalent ufunc|Description
 '**' | np.power | Exponentiation (e.g., 2 ** 3 = 8) 
 '%' |np.mod | Modulus/remainder (e.g., 9 % 4 = 1) 
 np.abs |np.absolute|
-
-
-
