@@ -7,3 +7,13 @@ In all programming language we have different libraries that help us to achieve 
 In this I have tried to add all examples which I suggest you should try and modify to get better understanding how they work and how ca they help you to get your idea in action.
 
 Most common programming language used for ML is Python, so I will add most of the libraries from python and later will try to add libs from other programming language which can help you achieve same output.
+
+
+
+
+
+## Lets start with Data processing 
+
+#### Python
+
+1. NumPy - see documentation [here](Python/numpy.md)
