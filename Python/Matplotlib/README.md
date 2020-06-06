@@ -102,7 +102,81 @@ Imread| Read an image from a file into an array.
 Imsave | Save an array as in image file.
 Imshow | Display an image on the axes.
 
-## Common Colors in matplotlib
+
+
+## Simple plot or line space
+
+```
+>>> from matplotlib import pyplot as plt
+>>> import numpy as np
+>>> X = np.linspace(0, 2*np.pi, 256)
+>>> C, S = np.cos(X), np.sin(X)
+>>> plt.plot(X, C)
+[<matplotlib.lines.Line2D object at 0x11ad8d390>]
+>>> plt.plot(X, S)
+[<matplotlib.lines.Line2D object at 0x11ad8d990>]
+>>> plt.show()
+```
+![Sine Cosine Plot ](images/plot1.png) 
+
+## Adding Legend and labels
+
+Calling legend() with no arguments automatically fetches the legend handles and their associated labels
+```	
+>>> plt.plot(X, S, label='Sin')
+[<matplotlib.lines.Line2D object at 0x1193d2a90>]
+>>> plt.plot(X, C, label='Cos')
+[<matplotlib.lines.Line2D object at 0x1193d2d50>]
+>>> plt.legend()
+<matplotlib.legend.Legend object at 0x1194a4c50>
+>>> plt.show()
+```	
+![Sine Cosine Plot with Legend](images/plot2.png)
+
+#### Setting ticks
+```
+>>> plt.plot(X, S, label='Sin')
+[<matplotlib.lines.Line2D object at 0x118255c50>]
+>>> plt.plot(X, C, label='Cos')
+[<matplotlib.lines.Line2D object at 0x119319410>]
+>>> plt.yticks([-1, 0, +1])
+([<matplotlib.axis.YTick object at 0x11adc31d0>, <matplotlib.axis.YTick object at 0x1171363d0>, <matplotlib.axis.YTick object at 0x118826590>], <a list of 3 Text yticklabel objects>)
+>>> plt.xticks([0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi])
+([<matplotlib.axis.XTick object at 0x117136150>, <matplotlib.axis.XTick object at 0x118826410>, <matplotlib.axis.XTick object at 0x118826090>, <matplotlib.axis.XTick object at 0x11822db10>, <matplotlib.axis.XTick object at 0x10ec54610>], <a list of 5 Text xticklabel objects>)
+>>> plt.legend()
+<matplotlib.legend.Legend object at 0x117148610>
+>>> plt.show()
+```
+![Sine Cosine Plot with Legend and ticks](images/plot3.png)
+
+#### changing color, line width, linestyle, ticks and axes
+
+```
+>>> ax = plt.gca()
+>>> ax.spines['right'].set_color('none')
+>>> ax.spines['top'].set_color('none')
+>>> ax.xaxis.set_ticks_position('bottom')
+>>> ax.spines['bottom'].set_position(('data',0))
+>>> ax.yaxis.set_ticks_position('left')
+>>> ax.spines['left'].set_position(('data',0))
+>>> plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
+           [r'$-\pi$', r'$-\pi/2$', r'$0$', r'$+\pi/2$', r'$+\pi$'])
+([<matplotlib.axis.XTick object at 0x10e51f8d0>, <matplotlib.axis.XTick object at 0x10e462e50>, <matplotlib.axis.XTick object at 0x10e53a610>, <matplotlib.axis.XTick object at 0x10e53ab10>, <matplotlib.axis.XTick object at 0x10e53af10>], <a list of 5 Text xticklabel objects>)
+>>> plt.yticks([-1, 0, +1],
+           [r'$-1$', r'$0$', r'$+1$'])
+([<matplotlib.axis.YTick object at 0x10e51f190>, <matplotlib.axis.YTick object at 0x10e462d10>, <matplotlib.axis.YTick object at 0x10e546a90>], <a list of 3 Text yticklabel objects>)
+>>> plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
+[<matplotlib.lines.Line2D object at 0x10e54d1d0>]
+>>> plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-", label="sine")
+[<matplotlib.lines.Line2D object at 0x10e546d10>]
+>>> plt.legend(loc='upper right')
+<matplotlib.legend.Legend object at 0x117ba8750>
+>>> plt.show()
+```
+
+![Sine Cosine Plot with Legend and ticks](images/plot4.png)
+
+#### Common Colors in matplotlib
 
 Symbol | Colour
 -------|------
@@ -120,48 +194,36 @@ More colours name - https://matplotlib.org/examples/color/named_colors.html
 #### RGB or RGBA  or Hex
 It will be float values from (0-1) for each Red, Green, Blues ,degree of transparency(optional)  or #ffffff
 
+#### Setting ticks
+
+#### Setting tick labels
+#### Moving spines
 
 
-
-##### Simple plot or ,line space 
-
-##### Instantiating defaults
-
-
-##### Changing colors and line widths
-
-
-##### Setting limits
-##### Setting ticks
-
-##### Setting tick labels
-##### Moving spines
-
-##### Adding a legend
 	
-##### Annotate some points
+## Annotate some points
 
-##### Devil is in the details
+## Devil is in the details
+#### Setting limits
 
-### Figures, Subplots, Axes and Ticks
+## Figures, Subplots, Axes and Ticks
 
-##### Figures,
-##### Subplots,
-##### Axes and
-##### Ticks
+#### Figures,
+#### Subplots,
+#### Axes and
+#### Ticks
 
-### Other plots
+## Other plots
 
-##### Regular
-##### Scatter
-##### Bar
-##### Contour
-##### Image show
-##### PIE CHARTS
-##### Quiver Plots
-##### Grids
-##### Multi Plots
-##### Polar Axis
-##### 3D Plots
-##### Text
-
+#### Regular
+#### Scatter
+#### Bar
+#### Contour
+#### Image show
+#### PIE CHARTS
+#### Quiver Plots
+#### Grids
+#### Multi Plots
+#### Polar Axis
+#### 3D Plots
+#### Text
