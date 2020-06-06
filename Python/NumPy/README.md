@@ -692,11 +692,100 @@ array([4, 3, 1, 2])
 
 ##### Numpy read write text and binary
 
+```
+>>> x = y = z = np.arange(0.0,5.0,1.0)
+>>> x
+array([0., 1., 2., 3., 4.])
+>>> np.savetxt('test.out', x, delimiter=',') 
+>>> arr = np.loadtxt('test.out')
+>>> arr
+array([0., 1., 2., 3., 4.])
+>>> np.savetxt('test.out', (x,y,z))
+>>> arr = np.loadtxt('test.out')
+>>> arr
+array([[0., 1., 2., 3., 4.],
+       [0., 1., 2., 3., 4.],
+       [0., 1., 2., 3., 4.]])
+
+```
+
+```
+>>> data = np.empty((1000, 1000))
+>>> np.save('test.npy', data)
+>>> np.savez('test.npz', data)
+>>> newdata = np.load('test.npy')
+>>> newdata
+array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.]])
+>>> newdata = np.load('test.npz')
+>>> sorted(newdata.files)
+['arr_0']
+>>> newdata['arr_0']
+array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.]])
+```
 ##### Math functions
+```
+>>> A = np.matrix([[3, 6, -5], [1, -3, 2],
+... [5, -1, 4]])
+>>> A
+matrix([[ 3,  6, -5],
+        [ 1, -3,  2],
+        [ 5, -1,  4]])
+>>> B = np.matrix([[12], [-2],
+... [10]])
+>>> B
+matrix([[12],
+        [-2],
+        [10]])
+>>> X = A ** (-1) * B
+>>> X
+matrix([[1.75],
+        [1.75],
+        [0.75]])
+```
+
+```
+>>> a = np.array([[3, 6, -5], [1, -3, 2],
+... [5, -1, 4]])
+>>> b = np.array([12, -2, 10])
+>>> a
+array([[ 3,  6, -5],
+       [ 1, -3,  2],
+       [ 5, -1,  4]])
+>>> b
+array([12, -2, 10])
+>>> x = np.linalg.inv(a).dot(b)
+>>> x
+array([1.75, 1.75, 0.75])
+```
+
 ##### NumPy’s UFuncs
 
 	
+NumPy provides a convenient interface into just this kind of statically typed, compiled routine. This is known as a vectorized operation.
 
-	
+Operator|Equivalent ufunc|Description
+----|-------|------
++ |np.add | Addition (e.g., 1 + 1 = 2) 
+- |np.subtract  | Subtraction (e.g., 3 - 2 = 1)
+- |np.negative |  Unary negation (e.g.,-2)
+* |np.multiply |Multiplication (e.g., 2 * 3 = 6) 
+/ |np.divide |Division (e.g., 3 / 2 = 1.5)
+//  |np.floor_divide| Floor division (e.g., 3 // 2 = 1) 
+** | np.power | Exponentiation (e.g., 2 ** 3 = 8) 
+% |np.mod | Modulus/remainder (e.g., 9 % 4 = 1) 
+np.abs |np.absolute|
+ 
 
 
