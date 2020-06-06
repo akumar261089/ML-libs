@@ -1,6 +1,6 @@
 # Machine learning libraries and how they work
 
-> I created this repository to overcome the inertia between reading and implementing Machine learning in programming. 
+> I created this repository to overcome the friction between reading and implementing Machine learning in programming. 
 
 In all programming language we have different libraries that help us to achieve our goals and to get our task done quickly, we should know what functionality they provide and how it can be used.
 
@@ -17,3 +17,12 @@ Most common programming language used for ML is Python, so I will add most of th
 #### Python
 
 1. NumPy - see documentation [here](Python/numpy.md)
+1. Pandas - see documentation [here](Python/pandas.md)
+
+
+
+## Data Visualization Libs
+
+#### Python 
+
+1. Matplotlib - see documentation [here](Python/matplotlib.md)

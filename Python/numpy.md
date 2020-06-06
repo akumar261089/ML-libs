@@ -12,14 +12,51 @@ NumPy specializes in numerical processing through multi-dimensional nDarrays, wh
 
 #### Benifits of NumPy array
 Memory-efficient(as you can reshape data in different dimentions of array without creating multiple copies) container that provides fast numerical operations. 
+Operating on the elements in a list can only be done through iterative loops, which is computationally inefficient in Python.
 
 #### Installing NumPy
 apt | yum | pip
 ----|--------|--------------
 `sudo apt-get install python-numpy`  | ` sudo yum install numpy ` |  `pip install numpy`
 
+#### Data types for np arrays
+
+The ndarray is similar to lists, but rather than being highly flexible by storing different types of objects in one list, only the same type of element can be stored in each column all elements must be floats, integers, or strings, it can also have elements like a list and in that case we will call it a Structured array
+
+NumPy arrays contain values of a single type, so it is important to have detailed knowledge of those types and their limitations.
+
+`np.zeros(10, dtype=np.int16)`
+`np.zeros(10, dtype='i2')`
+
+Data type| Description | short hand
+--------|--------------|----------
+bool_	| Boolean (True or False) stored as a byte | 
+int_	| Default integer type (same as C long; normally either int64 or int32) | 
+intc	| Identical to C int (normally int32 or int64) |
+intp	| Integer used for indexing (same as C ssize_t; normally either int32 or int64)  |
+int8	| Byte (–128 to 127) | i1
+int16	| Integer (–32768 to 32767) | i2
+int32	| Integer (–2147483648 to 2147483647) | i4
+int64	| Integer (–9223372036854775808 to 9223372036854775807) |i8
+uint8	| Unsigned integer (0 to 255) | u1
+uint16	| Unsigned integer (0 to 65535) | u2
+uint32	| Unsigned integer (0 to 4294967295) |u4
+uint64	| Unsigned integer (0 to 18446744073709551615) | u8
+float_	| Shorthand for float64 | f8
+float16	|Half-precision float: sign bit, 5 bits exponent, 10 bits mantissa | f2
+float32	| Single-precision float: sign bit, 8 bits exponent, 23 bits mantissa | f4
+float64	| Double-precision float: sign bit, 11 bits exponent, 52 bits mantissa |f8
+complex_ | 	Shorthand forcomplex128 | c16
+complex64	| Complex number, represented by two 32-bit floats | c8
+complex128	| Complex number, represented by two 64-bit floats | c16
+
+#### Structured Array
+
 #### How to create NumPy Array
+
 Import NumPy in your python code: ` import numpy as np `
+
+
 
 1D | Empty | Zeros | Sequential numbers | Specific steps between range | List
 ---|------|------|--------------------|---------------------------------|-------
@@ -39,8 +76,8 @@ You can specify the bit depth when creating arrays by setting the data type para
 `np.zeros(3, dtype=int)` and thios will give you `array([0, 0, 0])`
 >All  methods can be used to create 1D, 2D or nD arrays by giving dimentions in (n,m) example - `np.zeros((3,3))`
 
-##### Data types
-#####Structured Array
+
+
 ##### NumPy Array Attributes
 ##### How to move data back and forth from list to numpy
 
@@ -77,17 +114,8 @@ numpy.where()
 
 ##### Math functions
 ##### NumPy’s UFuncs
-	Why we need numpy array as we already have Python list and dict - operating on the elements in a list can only be done through iterative loops, which is computationally inefficient in Python.
-	example 
-	```
-	siome example code ie
 
-	import numpy as np
-	# Creating a 3D numpy array 
-	arr = np.zeros((3,3)) 
-	```
-
-	The ndarray is similar to lists, but rather than being highly flexible by storing different types of objects in one list, only the same type of element can be stored in each column all elements must be floats, integers, or strings, it can also have elements like a list and in that case we will call it a Structured array
+	
 	``` 
 	>>> recarr = np.zeros((2,), dtype=('i4,f4,a10'))
 	>>> toadd = [(1,2.,'Hello'),(2,3.,"World")]
