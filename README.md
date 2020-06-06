@@ -16,8 +16,8 @@ Most common programming language used for ML is Python, so I will add most of th
 
 #### Python
 
-1. NumPy - see documentation [here](Python/numpy.md)
-1. Pandas - see documentation [here](Python/pandas.md)
+1. NumPy - see documentation [here](Python/NumPy/README.md)
+1. Pandas - see documentation [here](Python/Pandas/README.md)
 
 
 
@@ -25,4 +25,4 @@ Most common programming language used for ML is Python, so I will add most of th
 
 #### Python 
 
-1. Matplotlib - see documentation [here](Python/matplotlib.md)
+1. Matplotlib - see documentation [here](Python/Matplotlib/README.md)
