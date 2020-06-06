@@ -49,9 +49,23 @@ float64	| Double-precision float: sign bit, 11 bits exponent, 52 bits mantissa |
 complex_ | 	Shorthand forcomplex128 | c16
 complex64	| Complex number, represented by two 32-bit floats | c8
 complex128	| Complex number, represented by two 64-bit floats | c16
+bytes | This is used for characters and strings( like a10 or S10/U10 for 10 characters long) | a10
 
 #### Structured Array
 
+Structured arrays or record arrays are ndarrays whose datatype is a composition of simpler datatypes organized as a sequence of named fields.
+scenarios like this often lend themselves to the use of Pandas DataFrames
+
+ 
+``` 
+>>>recarr = np.zeros((2,), dtype=('i4,f4,a10'))
+>>>toadd = [(1,2.,'Hello'),(2,3.,"World")]
+>>>recarr[:] = toadd
+>>>recarr 
+
+array([(1, 2., b'Hello'), (2, 3., b'World')],
+      dtype=[('f0', '<i4'), ('f1', '<f4'), ('f2', 'S10')])
+```
 
 
 #### How to create NumPy Array
@@ -80,14 +94,57 @@ You can specify the bit depth when creating arrays by setting the data type para
 
 
 
-##### NumPy Array Attributes
-##### How to move data back and forth from list to numpy
+#### NumPy Array Attributes
+
+#### How to move data back and forth from list to numpy
 
 
 
-##### Numpy array Reshaping
+#### Numpy array Reshaping
+In all reshape data will not be copied, it will be same, so if we change any value in array it will also change value in original array. So if we want a copy we should use  numpy.copy
+```
+>>> new = np.zeros((5,5))
+>>> new
+	array([[0., 0., 0., 0., 0.],
+      [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.]])
+>>> new1d = new.ravel()
+>>> new1d
+array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0.])
+>>> new1d[1]=1
+>>> new1d
+array([0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0.])
+>>> new
+array([[0., 1., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.]])
+ ```
 
-##### Numpy aray to matrix
+#### Numpy aray to matrix
+we need linear algebra operations,  we can convert nd array to matrix 
+>ndarray objects, matrix objects can and only will be two dimensional.
+
+```
+>>>import numpy as np
+>>>arr = np.zeros((3,3))
+>>>arr
+
+array([[0., 0., 0.],
+  	 [0., 0., 0.],
+  	 [0., 0., 0.]])
+>>>mat = np.matrix(arr)
+>>>mat
+
+matrix([[0., 0., 0.],
+  	  [0., 0., 0.],
+ 	   [0., 0., 0.]])
+```
 
 ##### Numpy array indeing 
 ##### Accessing and slicing
@@ -118,54 +175,7 @@ numpy.where()
 ##### NumPy’s UFuncs
 
 	
-	``` 
-	>>> recarr = np.zeros((2,), dtype=('i4,f4,a10'))
-	>>> toadd = [(1,2.,'Hello'),(2,3.,"World")]
-	>>> recarr[:] = toadd
-	>>> recarr
-	array([(1, 2., b'Hello'), (2, 3., b'World')],
-      dtype=[('f0', '<i4'), ('f1', '<f4'), ('f2', 'S10')])
-	```
-	> where i4 corresponds to a 32-bit integer, f4 corresponds to a 32-bit float, and a10 corresponds to a string 10 characters long.
 
-	we need linear algebra operations,  we can convert nd array to matrix 
-	ndarray objects, matrix objects can and only will be two dimensional.
+	
 
-	```
-    >>> import numpy as np
-	# Creating a 2D numpy array 
-	>>> arr = np.zeros((3,3))
-	>>> arr
-	array([[0., 0., 0.],
-      	 [0., 0., 0.],
-      	 [0., 0., 0.]])
-    >>> mat = np.matrix(arr)
-    >>> mat
-	matrix([[0., 0., 0.],
-      	  [0., 0., 0.],
-     	   [0., 0., 0.]])
-	```
 
-	In all reshape data will not be copied, it will be same, so if we change any value in array it will also change value in original array. So if we want a copy we should use  numpy.copy
-	```
->>> new = np.zeros((5,5))
->>> new
-	array([[0., 0., 0., 0., 0.],
-      [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.]])
->>> new1d = new.ravel()
->>> new1d
-array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-       0., 0., 0., 0., 0., 0., 0., 0.])
->>> new1d[1]=1
->>> new1d
-array([0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-       0., 0., 0., 0., 0., 0., 0., 0.])
->>> new
-array([[0., 1., 0., 0., 0.],
-       [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.]])
