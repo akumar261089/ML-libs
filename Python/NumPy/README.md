@@ -151,19 +151,74 @@ array([[1, 2],
 ```
 We can also use ravel to flattern the array
 ```
->>> new = np.zeros((5,5))
->>> new
-	array([[0., 0., 0., 0., 0.],
-      [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.],
-       [0., 0., 0., 0., 0.]])
->>> new1d = new.ravel()
->>> new1d
-array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-       0., 0., 0., 0., 0., 0., 0., 0.])
-
+>>> a = np.array([[1, 2, 3], [4, 5, 6]])
+>>> a.ravel()
+array([1, 2, 3, 4, 5, 6])
+>>> a.T
+array([[1, 4],
+       [2, 5],
+       [3, 6]])
+>>> a.T.ravel()
+array([1, 4, 2, 5, 3, 6])
+>>> a.shape
+(2, 3)
+>>> b = a.ravel()
+>>> b
+array([1, 2, 3, 4, 5, 6])
+>>> b = b.reshape((2, 3))
+>>> b
+array([[1, 2, 3],
+       [4, 5, 6]])
+>>> a.reshape((2, -1))
+array([[1, 2, 3],
+       [4, 5, 6]])
  ```
+ ```
+ >>> z = np.array([1, 2, 3])
+>>> z
+array([1, 2, 3])
+>>> z[:, np.newaxis]
+array([[1],
+       [2],
+       [3]])
+>>> z[np.newaxis, :]
+array([[1, 2, 3]])
+```
+
+```
+>>> a = np.arange(4*3*2).reshape(4, 3, 2)
+>>> a.shape
+(4, 3, 2)
+>>> a
+array([[[ 0,  1],
+        [ 2,  3],
+        [ 4,  5]],
+
+       [[ 6,  7],
+        [ 8,  9],
+        [10, 11]],
+
+       [[12, 13],
+        [14, 15],
+        [16, 17]],
+
+       [[18, 19],
+        [20, 21],
+        [22, 23]]])
+>>> a[0, 2, 1]
+5
+>>> b = a.transpose(1, 2, 0)
+>>> b.shape
+(3, 2, 4)
+>>> b[2, 1, 0]
+5
+```
+```
+>>> a = np.arange(4)
+>>> a.resize((8,))
+>>> a
+array([0, 1, 2, 3, 0, 0, 0, 0])
+```
 
 ## Numpy aray to matrix
 we need linear algebra operations,  we can convert nd array to matrix 
@@ -263,14 +318,241 @@ array([[1, 2, 3],
 
 ##  fancy indexing
 
+pass arrays of indices in place of single scalars.
+```
+>>> rand = np.random.RandomState(42)
+>>> x = rand.randint(100, size=10)
+>>> x
+array([51, 92, 14, 71, 60, 20, 82, 86, 74, 74])
+>>> ind = [3, 7, 4]
+>>> x[ind]
+array([71, 86, 60])
+>>> ind = np.array([[3, 7],[4, 5]])
+>>> x[ind]
+array([[71, 86],
+       [60, 20]])
+```
 
-##### Element wise  operation
+Combining fancy indexing with the other indexing schemes 
+```
+>>> x = np.array([[0,  1,  2,  3],[4,  5,  6,  7],[8,  9, 10, 11]])
+>>> x
+array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+>>> x[2, [2, 0, 1]]
+array([10,  8,  9])
+>>> x[1:, [2, 0, 1]]
+array([[ 6,  4,  5],
+       [10,  8,  9]])
 
-##### Basic Reductions
+```
 
-##### Broadcasting
+## Element wise  operation
+Each elemet is getting affected
 
-##### Sorting 
+```
+>>> a = np.array([1, 2, 3, 4])
+>>> 2**a
+array([ 2,  4,  8, 16])
+>>> b = np.ones(4) + 1
+>>> b
+array([2., 2., 2., 2.])
+>>> a - b
+array([-1.,  0.,  1.,  2.])
+>>> a * b
+array([2., 4., 6., 8.])
+>>> j = np.arange(5)
+>>> 2**(j + 1) - j
+array([ 2,  3,  6, 13, 28])
+```
+> Array multiplication is not matrix multiplication
+
+Matrix multiplication:
+``` 
+>>> a = np.array([[0,  1,  2],[4,  5,  6],[  9, 10, 11]])
+>>> a*a
+array([[  0,   1,   4],
+       [ 16,  25,  36],
+       [ 81, 100, 121]])
+>>> a.dot(a)
+array([[ 22,  25,  28],
+       [ 74,  89, 104],
+       [139, 169, 199]])
+```
+
+```
+>>> a = np.array([1, 2, 3, 4])
+>>> b = np.array([4, 2, 2, 4])
+>>> a == b
+array([False,  True, False,  True])
+>>> a > b
+array([False, False,  True, False])
+>>> c = np.array([1, 2, 3, 4])
+>>> np.array_equal(a, b)
+False
+>>> np.array_equal(a, c)
+True
+
+```
+
+```
+>>> a = np.array([1, 1, 0, 0], dtype=bool)
+>>> b = np.array([1, 0, 1, 0], dtype=bool)
+>>> np.logical_or(a, b)
+array([ True,  True,  True, False])
+>>> np.logical_and(a, b)
+array([ True, False, False, False])
+```
+
+```
+>>> a = np.arange(5)
+>>> np.sin(a)
+array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ])
+>>> np.log(a)
+__main__:1: RuntimeWarning: divide by zero encountered in log
+array([      -inf, 0.        , 0.69314718, 1.09861229, 1.38629436])
+>>> 
+>>> 
+>>> 
+>>> a = np.triu(np.ones((3, 3)), 1)
+>>> a
+array([[0., 1., 1.],
+       [0., 0., 1.],
+       [0., 0., 0.]])
+>>> a.T
+array([[0., 0., 0.],
+       [1., 0., 0.],
+       [1., 1., 0.]])
+
+
+```
+> The transposition is a view not for matrix 
+
+## Basic Reductions
+
+```
+>>> x = np.array([1, 2, 3, 4])
+>>> np.sum(x)
+10
+>>> x = np.array([[1, 1], [2, 2]])
+>>> x
+array([[1, 1],
+       [2, 2]])
+>>> x.sum(axis=0)
+array([3, 3])
+>>> x.sum(axis=1)
+array([2, 4])
+
+```
+```
+>>> x = np.random.rand(2, 2, 2)
+>>> x
+array([[[0.97353313, 0.23882437],
+        [0.10007779, 0.90065641]],
+
+       [[0.21706707, 0.18002739],
+        [0.20039856, 0.53121455]]])
+>>> x.sum(axis=2)[0, 1]
+1.0007341939843606
+>>> x[0, 1, :].sum()
+1.0007341939843606
+```
+
+```
+>>> x = np.array([1, 3, 2])
+>>> x.min()
+1
+>>> x.max()
+3
+>>> x.argmin()
+0
+>>> x.argmax()
+1
+
+>>> np.all(a != 4)
+True
+>>> np.any(a >0 )
+True
+>>> np.any(a <0 )
+False
+```
+```
+>>> x = np.array([1, 2, 3, 1])
+>>> y = np.array([[1, 2, 3], [5, 6, 1]])
+>>> x.mean()
+1.75
+>>> np.median(x)
+1.5
+>>> np.median(y, axis=-1)
+array([2., 5.])
+>>> x.std()
+0.82915619758885
+```
+## Broadcasting
+
+```
+>>> a = np.tile(np.arange(0, 40, 10), (3, 1)).T
+>>> a
+array([[ 0,  0,  0],
+       [10, 10, 10],
+       [20, 20, 20],
+       [30, 30, 30]])
+>>> 
+>>> b = np.array([0, 1, 2])
+>>> b
+array([0, 1, 2])
+>>> a + b
+array([[ 0,  1,  2],
+       [10, 11, 12],
+       [20, 21, 22],
+       [30, 31, 32]])
+```
+
+```
+>>> a = np.ones((4, 5))
+>>> a[0] = 2
+>>> a
+array([[2., 2., 2., 2., 2.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.]])
+
+```
+```
+>>> a = np.arange(0, 40, 10)
+>>> a
+array([ 0, 10, 20, 30])
+>>> a = a[:, np.newaxis]
+>>> a.shape
+(4, 1)
+>>> a
+array([[ 0],
+       [10],
+       [20],
+       [30]])
+>>> a = np.arange(0, 40, 10)
+>>> a
+array([ 0, 10, 20, 30])
+>>> a.shape
+(4,)
+>>> b = a[:, np.newaxis]
+>>> b.shape
+(4, 1)
+>>> b
+array([[ 0],
+       [10],
+       [20],
+       [30]])
+>>> a + b
+array([[ 0, 10, 20, 30],
+       [10, 20, 30, 40],
+       [20, 30, 40, 50],
+       [30, 40, 50, 60]])
+```
+
+## Sorting 
+
 ##### More elaborate arrays
 
 ##### maskedarray
