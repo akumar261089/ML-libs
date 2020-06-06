@@ -777,14 +777,14 @@ NumPy provides a convenient interface into just this kind of statically typed, c
 
 Operator|Equivalent ufunc|Description
 ----|-------|------
-+ |np.add | Addition (e.g., 1 + 1 = 2) 
-- |np.subtract  | Subtraction (e.g., 3 - 2 = 1)
-- |np.negative |  Unary negation (e.g.,-2)
-* |np.multiply |Multiplication (e.g., 2 * 3 = 6) 
-/ |np.divide |Division (e.g., 3 / 2 = 1.5)
-//  |np.floor_divide| Floor division (e.g., 3 // 2 = 1) 
-** | np.power | Exponentiation (e.g., 2 ** 3 = 8) 
-% |np.mod | Modulus/remainder (e.g., 9 % 4 = 1) 
+'+' |np.add | Addition (e.g., 1 + 1 = 2) 
+'-' |np.subtract  | Subtraction (e.g., 3 - 2 = 1)
+'-' |np.negative |  Unary negation (e.g.,-2)
+'*' |np.multiply |Multiplication (e.g., 2 * 3 = 6) 
+'/' |np.divide |Division (e.g., 3 / 2 = 1.5)
+'//'  |np.floor_divide| Floor division (e.g., 3 // 2 = 1) 
+'**' | np.power | Exponentiation (e.g., 2 ** 3 = 8) 
+'%' |np.mod | Modulus/remainder (e.g., 9 % 4 = 1) 
 np.abs |np.absolute|
 
 
