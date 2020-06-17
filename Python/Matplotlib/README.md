@@ -52,59 +52,88 @@ Subplot | Subplot is like sub part of figure which contains all data to be displ
 
 pyplot provides a procedural interface to the matplotlib object-oriented plotting library. It is modelled closely after MatlabTM. Therefore, the majority of plotting commands in pyplot have MatlabTM analogy with similar arguments. 
 
-Type of plot|	Function & Description
-------------|-------------------------
-Bar	|Make a bar plot.
-Barh|	Make a horizontal bar plot.
-Boxplot	|Make a box and whisker plot.
-Hist	|Plot a histogram.
-hist2d	|Make a 2D histogram plot.
-Pie	|Plot a pie chart.
-Plot|	Plot lines and/or markers to the Axes.
-Polar|	Make a polar plot..
-Scatter	|Make a scatter plot of x vs y.
-Stackplot|	Draws a stacked area plot.	
-Stem|	Create a stem plot.
-Step	|Make a step plot.
-Quiver	|Plot a 2-D field of arrows.
+Type of plot|	Function & Description | Example
+------------|-------------------------|----
+bar	|Make a bar plot.|
+barh|	Make a horizontal bar plot.|
+boxplot	|Make a box and whisker plot.|
+hist	|Plot a histogram.|
+hist2d	|Make a 2D histogram plot.|
+pie	 |Plot a pie chart.|
+plot |	Plot lines and/or markers to the Axes.|[simple plot](#simple-plot-or-line-space)
+polar|	Make a polar plot..|
+scatter	|Make a scatter plot of x vs y.|
+stackplot|	Draws a stacked area plot.	|
+stem|	Create a stem plot.|
+step	|Make a step plot.|
+quiver	|Plot a 2-D field of arrows.|
 
 ### Figure Functions
 
 Function | Description
 ---------|-----------
-Figtext|Add text to figure.
-Figure| Creates a new figure.
-Show| Display a figure.
-Savefig| Save the current figure.
-Close| Close a figure window.
+figtext|Add text to figure.
+figure| Creates a new figure.
+show| Display a figure.
+savefig| Save the current figure.
+close| Close a figure window.
 
 ### Axis Functions
 
-Function|	Description
---------|------------------
-Axes	|Add axes to the figure.
-Text|	Add text to the axes.
-Title|	Set a title of the current axes.
-Xlabel|	Set the x axis label of the current axis.
-Xlim	|Get or set the x limits of the current axes.
-Xscale	|.
-Xticks	|Get or set the x-limits of the current tick locations and labels.
-Ylabel	|Set the y axis label of the current axis.
-Ylim	|Get or set the y-limits of the current axes.
-Yscale	|Set the scaling of the y-axis.
-Yticks	|Get or set the y-limits of the current tick locations and labels.
+Function|	Description | Example
+--------|---------------|-----------
+axes	|Add axes to the figure.|
+text|	Add text to the axes.|
+title |	Set a title of the current axes.|
+xlabel |	Set the x axis label of the current axis.|
+xlim	|Get or set the x limits of the current axes.|
+xscale	|.|
+xticks	|Get or set the x-limits of the current tick locations and labels.|
+ylabel	|Set the y axis label of the current axis.|
+ylim	|Get or set the y-limits of the current axes.|
+yscale	|Set the scaling of the y-axis.|
+yticks	|Get or set the y-limits of the current tick locations and labels.|
 
 ### Image Functions
 
 Function|	Description
 --------|------------------
-Imread| Read an image from a file into an array.
-Imsave | Save an array as in image file.
-Imshow | Display an image on the axes.
+imread| Read an image from a file into an array.
+imsave | Save an array as in image file.
+imshow | Display an image on the axes.
 
 
 
 ## Simple plot or line space
+
+For simple line plot we call `plot` method from `pyplot`
+
+Plot method taks parameters as :
+
+Parameters| Description| Type |  example
+----------|------------|------|---------
+x, y| Data to be projected in plot. x values are optional -  default: `range(len(y))` | array or list | `plt.plot(x,y)`
+fmt | basic plot properties '[marker][line][color]'. Optional| string | `plt.plot(x,y, 'o-r')`
+data| we can give data in this, like formats, labels. Optional|  indexable object| `plt.plot(x,y, color='r', linestyle='-', label='Agra Temp')`
+b8
+
+#### Color
+
+Symbol | Colour
+-------|------
+b| Blue
+g| Green
+r| Red
+c| Cyan
+m| Magenta
+y| Yellow
+k| Black
+w| White
+
+> We can give RGB values as well, it will be float values from (0-1) for each Red, Green, Blues ,degree of transparency(optional)  or #ffffff
+
+
+Example 1
 
 ```
 >>> from matplotlib import pyplot as plt
@@ -119,9 +148,30 @@ Imshow | Display an image on the axes.
 ```
 ![Sine Cosine Plot ](images/plot1.png) 
 
+Example 2
+
+```
+>>>import matplotlib.pyplot as plt
+>>>agra_avg_temp = [14.6, 17.9, 23.7, 29.8, 34.2, 35, 30.9, 29.3, 28.9, 26.1, 20.5, 16]
+>>>months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+>>> plt.plot(months, agra_avg_temp, color='r', linestyle='-', label='Agra Temp')
+[<matplotlib.lines.Line2D object at 0x11a4a4450>]
+>>> plt.title('Agra Temp')
+Text(0.5, 1.0, 'Agra Temp')
+>>> plt.xlabel('Months')
+Text(0.5, 0, 'Months')
+>>> plt.ylabel('Temp in Celsius')
+Text(0, 0.5, 'Temp in Celsius')
+>>> plt.show()
+```
+![Agra Temp Plot ](images/agratemp1.png) 
+
 ## Adding Legend and labels
 
 Calling legend() with no arguments automatically fetches the legend handles and their associated labels
+
+Example 1
+
 ```	
 >>> plt.plot(X, S, label='Sin')
 [<matplotlib.lines.Line2D object at 0x1193d2a90>]
@@ -132,6 +182,31 @@ Calling legend() with no arguments automatically fetches the legend handles and 
 >>> plt.show()
 ```	
 ![Sine Cosine Plot with Legend](images/plot2.png)
+
+Example 2
+
+```
+>>>import matplotlib.pyplot as plt
+>>>agra_avg_temp = [14.6, 17.9, 23.7, 29.8, 34.2, 35, 30.9, 29.3, 28.9, 26.1, 20.5, 16]
+>>>pune_avg_temp = [21.3, 23.1, 26.3, 29, 29.6, 27.3, 24.8, 24.5, 24.8, 25.5, 23, 21.1]
+>>>months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+>>> plt.plot(months, agra_avg_temp, color='r', linestyle='-', label='Agra Temp')
+[<matplotlib.lines.Line2D object at 0x11d445bd0>]
+>>> plt.plot(months, pune_avg_temp, color='b', linestyle='-', label='Pune Temp')
+[<matplotlib.lines.Line2D object at 0x11d44f4d0>]
+>>> plt.title('Yearly Temp')
+Text(0.5, 1.0, 'Yearly Temp')
+>>> plt.xlabel('Months')
+Text(0.5, 0, 'Months')
+>>> plt.ylabel('Temp in Celsius')
+Text(0, 0.5, 'Temp in Celsius')
+>>> plt.legend()
+<matplotlib.legend.Legend object at 0x11d2e7210>
+>>> plt.tight_layout()
+>>> plt.grid(True)
+>>> plt.show()
+```
+![Yearly Temp Plot ](images/temp2.png) 
 
 #### Setting ticks
 ```
@@ -176,23 +251,48 @@ Calling legend() with no arguments automatically fetches the legend handles and 
 
 ![Sine Cosine Plot with Legend and ticks](images/plot4.png)
 
-#### Common Colors in matplotlib
+## Save plot images in program 
 
-Symbol | Colour
--------|------
-b| Blue
-g| Green
-r| Red
-c| Cyan
-m| Magenta
-y| Yellow
-k| Black
-w| White
+We can save plot images in program and can upload/export to somewhere else.. like generate in backend and load this as image in frontend.
 
-More colours name - https://matplotlib.org/examples/color/named_colors.html
+Instead of `plt.show()` use `plt.savefig('plot.png')` 
 
-#### RGB or RGBA  or Hex
-It will be float values from (0-1) for each Red, Green, Blues ,degree of transparency(optional)  or #ffffff
+## Styles in Matplotlib
+
+We can also use any default styles available in matplotlib which will save much time and effor -
+
+```
+>>> print(plt.style.available)
+['seaborn-dark', 'seaborn-darkgrid', 'seaborn-ticks', 'fivethirtyeight', 'seaborn-whitegrid', 'classic', '_classic_test', 'fast', 'seaborn-talk', 'seaborn-dark-palette', 'seaborn-bright', 'seaborn-pastel', 'grayscale', 'seaborn-notebook', 'ggplot', 'seaborn-colorblind', 'seaborn-muted', 'seaborn', 'Solarize_Light2', 'seaborn-paper', 'bmh', 'tableau-colorblind10', 'seaborn-white', 'dark_background', 'seaborn-poster', 'seaborn-deep']
+```
+
+Example 
+
+```
+>>>import matplotlib.pyplot as plt
+>>>agra_avg_temp = [14.6, 17.9, 23.7, 29.8, 34.2, 35, 30.9, 29.3, 28.9, 26.1, 20.5, 16]
+>>>pune_avg_temp = [21.3, 23.1, 26.3, 29, 29.6, 27.3, 24.8, 24.5, 24.8, 25.5, 23, 21.1]
+>>>months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+>>> plt.style.use('fivethirtyeight')
+>>> plt.plot(months, agra_avg_temp,  label='Agra Temp')
+[<matplotlib.lines.Line2D object at 0x11c60a3d0>]
+>>> plt.plot(months, pune_avg_temp, label='Pune Temp')
+[<matplotlib.lines.Line2D object at 0x11c60ac90>]
+>>> plt.title('Yearly Temp')
+Text(0.5, 1.0, 'Yearly Temp')
+>>> plt.xlabel('Months')
+Text(0.5, 0, 'Months')
+>>> plt.ylabel('Temp in Celsius')
+Text(0, 0.5, 'Temp in Celsius')
+>>> plt.legend()
+<matplotlib.legend.Legend object at 0x11d39c2d0>
+>>> plt.tight_layout()
+>>> plt.show()
+```
+![Yearly Temp Plot ](images/temp3.png) 
+
+
+## Bar Charts
 
 #### Setting ticks
 
@@ -217,7 +317,43 @@ It will be float values from (0-1) for each Red, Green, Blues ,degree of transpa
 
 #### Regular
 #### Scatter
-#### Bar
+#### Marker stykes
+
+Symbol|Type
+------|----
+'o'| Circle
+'x'| Cross
+'+'| plus
+'P'| Filled Plus
+'D'| Diamond
+'s'| Square
+'^'| Triangle
+
+```
+>>> import numpy as np
+>>> import matplotlib.pyplot as plt
+>>> import matplotlib.colors
+>>> 
+>>> n = list(range(5)
+... )
+>>> n = list(range(5))
+>>> n
+[0, 1, 2, 3, 4]
+>>> s=[i**2*100+100 for i in n ]
+>>> s
+[100, 200, 500, 1000, 1700]
+>>> c= ['red','orange','yellow','green','blue']
+>>> plt.scatter(n,n,s=s,c=c)
+<matplotlib.collections.PathCollection object at 0x11ad13810>
+>>> plt.plot(n,marker='x',color='black',ms=12)
+[<matplotlib.lines.Line2D object at 0x11a2c5a50>]
+>>> plt.xlim(-0.5,4.5)
+(-0.5, 4.5)
+>>> plt.ylim(-1,5)
+(-1, 5)
+>>> plt.show()
+```
+
 #### Contour
 #### Image show
 #### PIE CHARTS
